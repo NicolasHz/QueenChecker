@@ -2,7 +2,9 @@ function queenChecker(arr) {
   let boardLength = 0
 
   const extractXandY = (string) => {
-    const positions = string.match(/\d+,\d+/)[0].split(',')
+    const parsedPositions = string.match(/\d+,\d+/)
+    if (!parsedPositions) throw Error('Queen position input Error - check the given positions')
+    const positions = [0].split(',')
     return { x: Number(positions[0]), y: Number(positions[1]) }
   }
   const extractPointSums = ({ transversal }) => {
