@@ -1,5 +1,4 @@
 function queenChecker(arr) {
-  let queenPosition = ''
   let boardLength = 0
 
   const extractXandY = (string) => {
