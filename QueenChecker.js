@@ -66,4 +66,10 @@ function getTransversal(x, y, boardLength) {
     }
   }
 }
-console.log(queenChecker(["(2,1)", "(5,3)", "(6,3)", "(8,4)", "(3,4)", "(1,8)", "(7,7)", "(5,8)"]))s
+// Example where it collides
+console.log(queenChecker(["(2,1)", "(5,3)", "(6,3)", "(8,4)", "(3,4)", "(1,8)", "(7,7)", "(5,8)"]))
+// Example where it doesn't collides
+console.log(queenChecker(["(4,1)", "(7,2)", "(3,3)", "(8,4)", "(2,5)", "(5,6)", "(1,7)", "(6,8)"]))
+
+// Minified version
+// function queenChecker(t){let o=0;const n=t=>{const o=t.match(/\d+,\d+/)[0].split(",");return{x:Number(o[0]),y:Number(o[1])}},i=({transversal:t})=>{const{izqSupToDerInf:o,izqInfToDerSup:n}=t;return{izqSupToDerInf:o.getPointSums(),izqInfToDerSup:n.getPointSums()}};t.forEach(t=>{const{x:i,y:r}=n(t);o=i>=r?i>o?i:o:r>o?r:o});const r=t.map((t,i)=>{const{x:r,y:u}=n(t);return{x:r,y:u,transversal:getTransversal(r,u,o)}}),u=r.findIndex((t,o,n)=>n.find((n,r)=>{if(o!==r)return t.x===n.x||t.y===n.y||((t,o)=>{const{izqInfToDerSup:n,izqInfToDerSup:r}=i(t),{izqInfToDerSup:u,izqInfToDerSup:e}=i(o);return n.fromPointSum===u.fromPointSum&&n.toPointSum===u.toPointSum||r.fromPointSum===e.fromPointSum&&r.toPointSum===e.toPointSum})(t,n)}));return-1===u||`(${r[u].x},${r[u].y})`}function getTransversal(t,o,n){return{izqInfToDerSup:{fromPoint:{x:t+o<=n+1?1:t===n?o:o-(n-t),y:t+o>n?n:t+o-1},toPoint:{x:t+o>n?n:t+o-1,y:t+o<=n?1:o-(n-t)},getPointSums:function(){return{fromPointSum:this.fromPoint.x+this.fromPoint.y,toPointSum:this.toPoint.x+this.toPoint.y}}},izqSupToDerInf:{fromPoint:{x:o>=t?1:t-(o-1),y:t>=o?1:o-(t-1)},toPoint:{x:t>=o?n:n-(o-t),y:t<=o?n:n-(t-o)},getPointSums:function(){return{fromPointSum:this.fromPoint.x+this.fromPoint.y,toPointSum:this.toPoint.x+this.toPoint.y}}}}}console.log(queenChecker(["(2,1)","(5,3)","(6,3)","(8,4)","(3,4)","(1,8)","(7,7)","(5,8)"]));
