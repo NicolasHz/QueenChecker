@@ -1,10 +1,10 @@
 function queenChecker(arr) {
   let boardLength = 0
 
-  const extractXandY = (string) => {
+  const extractXandY = (string, i) => {
     const parsedPositions = string.match(/\d+,\d+/)
-    if (!parsedPositions) throw Error('Queen position input Error - check the given positions')
-    const positions = [0].split(',')
+    if (!parsedPositions) throw Error(`Queen position input Error - check the given position${i >= 0 ? ' at ' + i : 's'}`)
+    const positions = parsedPositions[0].split(',')
     return { x: Number(positions[0]), y: Number(positions[1]) }
   }
   const extractPointSums = ({ transversal }) => {
@@ -17,12 +17,12 @@ function queenChecker(arr) {
     return currentQueenIzqS.fromPointSum === collisionQueenIzqS.fromPointSum && currentQueenIzqS.toPointSum === collisionQueenIzqS.toPointSum || currentQueenIzqI.fromPointSum === collisionQueenIzqI.fromPointSum && currentQueenIzqI.toPointSum === collisionQueenIzqI.toPointSum
   }
 
-  arr.forEach(v => {
-    const { x, y } = extractXandY(v)
+  arr.forEach((v, i) => {
+    const { x, y } = extractXandY(v, i)
     boardLength = x >= y ? x > boardLength ? x : boardLength : y > boardLength ? y : boardLength
   })
   const queens = arr.map((v, i) => {
-    const { x, y } = extractXandY(v)
+    const { x, y } = extractXandY(v, i)
     return {
       x,
       y,
